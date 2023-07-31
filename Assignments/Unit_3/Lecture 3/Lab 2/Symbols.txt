@@ -1,0 +1,46 @@
+/* Startup file */ 
+$ arm-none-eabi-nm.exe startup.o
+         U _E_bss
+         U _E_DATA
+         U _E_text
+         U _S_bss
+         U _S_DATA
+         U _stack_top
+00000000 W Bus_Handler
+00000000 T Default_Handler
+00000000 W H_Fault_Handler
+         U main
+00000000 W MM_Fault_Handler
+00000000 W NMI_Handler
+0000000c T Reset_Handler
+00000000 W Usage_Fault_Handler
+00000000 D vectors
+
+
+/* main file */
+$ arm-none-eabi-nm.exe main.o
+00000000 R cons_var
+00000000 D g_var
+00000000 T main
+
+
+/* .elf (executable) file */
+$ arm-none-eabi-nm.exe learn-in-depth-cortex-M3.elf
+20000004 B _E_bss
+20000004 D _E_DATA
+0800013c T _E_text
+20000004 B _S_bss
+20000000 D _S_DATA
+200003ec B _stack_top
+080000a4 W Bus_Handler
+08000138 T cons_var
+080000a4 T Default_Handler
+20000000 D g_var
+080000a4 W H_Fault_Handler
+0800001c T main
+080000a4 W MM_Fault_Handler
+080000a4 W NMI_Handler
+080000b0 T Reset_Handler
+080000a4 W Usage_Fault_Handler
+08000000 T vectors
+
