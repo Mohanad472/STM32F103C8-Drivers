@@ -8,7 +8,6 @@ char roll_number_found(FIFO_Buf_t *fifo, int roll_entered)
 	{
 		if(temp->roll == roll_entered)
 		{
-			printf("[ERROR] Roll number %d is already taken\n", roll_entered);
 			return 1;
 		}
 		else

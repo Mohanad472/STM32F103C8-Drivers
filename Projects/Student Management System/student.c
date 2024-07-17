@@ -48,6 +48,7 @@ void add_student_file(FIFO_Buf_t *fifo)
 			flag = roll_number_found(fifo, roll_entered);
 			if(flag == 1)
 			{
+				printf("[ERROR] Roll number %d is already taken\n", roll_entered);
 				continue;
 			}
 			else
@@ -135,6 +136,10 @@ void add_student_manually(FIFO_Buf_t *fifo, element_type *st)
 		printf("[INFO] Student details is added successfully\n");
 		printf("-----------------------------------\n");
 		tot_s(fifo);
+	}
+	else
+	{
+		printf("[ERROR] Roll number %d is already taken\n", roll_entered);
 	}
 }
 
