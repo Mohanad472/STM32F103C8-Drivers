@@ -1,3 +1,2 @@
 # embedded_diploma_ks
-
-# New edits
+This repo contains STM32F103C8 drivers and projects.
