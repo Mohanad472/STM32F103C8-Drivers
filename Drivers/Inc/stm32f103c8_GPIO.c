@@ -101,7 +101,7 @@ void MCAL_GPIO_Init(GPIO_Typedef *GPIOx, GPIO_PinConfig_t* GPIO_PinConfig)
 		}
 		else if((GPIO_PinConfig -> GPIO_Mode == GPIO_MODE_AF_INPUT)) //consider as input floating
 		{
-			pin_config = (((GPIO_MODE_AF_INPUT << 2) | (0x0)) & 0x0F);
+			pin_config = (((GPIO_MODE_INPUT_FLO << 2) | (0x0)) & 0x0F);
 		}
 		else	//PU PD
 		{
@@ -278,7 +278,7 @@ void MCAL_GPIO_WritePort(GPIO_Typedef *GPIOx, uint16_t Value)
  */
 void MCAL_GPIO_TogglePin(GPIO_Typedef *GPIOx, uint16_t PinNumber)
 {
-	GPIOx->ODR ^= PinNumber;
+	GPIOx->ODR ^= (1 << PinNumber);
 }
 
 

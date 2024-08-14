@@ -24,6 +24,15 @@
 #define PERIPHERALS_BASE						0x40000000UL
 #define CORTEX_M3_INTERNAL_PERIPHERALS_BASE		0xE0000000UL
 
+//NVIC register map
+#define NVIC_BASE								0xE000E100UL
+#define NVIC_ISER0								*(volatile uint32_t *)(NVIC_BASE + 0x0)
+#define NVIC_ISER1								*(volatile uint32_t *)(NVIC_BASE + 0x4)
+#define NVIC_ISER2								*(volatile uint32_t *)(NVIC_BASE + 0x8)
+#define NVIC_ICER0								*(volatile uint32_t *)(NVIC_BASE + 0x80)
+#define NVIC_ICER1								*(volatile uint32_t *)(NVIC_BASE + 0x84)
+#define NVIC_ICER2								*(volatile uint32_t *)(NVIC_BASE + 0x88)
+
 //================================================================//
 //-----------------------------
 //Base addresses for AHB BUS Peripherals
@@ -101,7 +110,7 @@ typedef struct
 {
 	volatile uint32_t	IMR;
 	volatile uint32_t	EMR;
-	volatile uint32_t	RSTR;
+	volatile uint32_t	RTSR;
 	volatile uint32_t	FTSR;
 	volatile uint32_t	SWIER;
 	volatile uint32_t	PR;
@@ -115,10 +124,7 @@ typedef struct
 {
 	volatile uint32_t	EVCR;
 	volatile uint32_t	MAPR;
-	volatile uint32_t	EXTICR1;
-	volatile uint32_t	EXTICR2;
-	volatile uint32_t	EXTICR3;
-	volatile uint32_t	EXTICR4;
+	volatile uint32_t	EXTICR[4];
 	uint32_t			RESERVED0;
 	volatile uint32_t	MAPR2;
 
@@ -152,8 +158,51 @@ typedef struct
 
 #define RCC_AFIO_CLK_EN()		(RCC->APB2ENR |= 1<<0);	//AFIOEN = 1
 
+
 //================================================================//
+//-*-*-*-*-*-*-*-*-*-*-*
+//IVT:
+//-*-*-*-*-*-*-*-*-*-*-*
+//EXTI
+#define	EXTI0_IRQ	6
+#define	EXTI1_IRQ	7
+#define	EXTI2_IRQ	8
+#define	EXTI3_IRQ	9
+#define	EXTI4_IRQ	10
+#define	EXTI5_IRQ	23
+#define	EXTI6_IRQ	23
+#define	EXTI7_IRQ	23
+#define	EXTI8_IRQ	23
+#define	EXTI9_IRQ	23
+#define	EXTI10_IRQ	40
+#define	EXTI11_IRQ	40
+#define	EXTI12_IRQ	40
+#define	EXTI13_IRQ	40
+#define	EXTI14_IRQ	40
+#define	EXTI15_IRQ	40
+
+
 //-*-*-*-*-*-*-*-*-*-*-*-
+//NVIC IRQ Enable/Disable Macros:
+//-*-*-*-*-*-*-*-*-*-*-*
+#define NVIC_IRQ6_EXTI0_Enable			(NVIC_ISER0 |= 1<<6)
+#define NVIC_IRQ7_EXTI1_Enable			(NVIC_ISER0 |= 1<<7)
+#define NVIC_IRQ8_EXTI2_Enable			(NVIC_ISER0 |= 1<<8)
+#define NVIC_IRQ9_EXTI3_Enable			(NVIC_ISER0 |= 1<<9)
+#define NVIC_IRQ10_EXTI4_Enable			(NVIC_ISER0 |= 1<<10)
+#define NVIC_IRQ23_EXTI5_9_Enable		(NVIC_ISER0 |= 1<<23)
+#define NVIC_IRQ40_EXTI10_15_Enable		(NVIC_ISER1 |= 1<<8)
+
+#define NVIC_IRQ6_EXTI0_Disable			(NVIC_ICER0 |= 1<<6)
+#define NVIC_IRQ7_EXTI1_Disable			(NVIC_ICER0 |= 1<<7)
+#define NVIC_IRQ8_EXTI2_Disable			(NVIC_ICER0 |= 1<<8)
+#define NVIC_IRQ9_EXTI3_Disable			(NVIC_ICER0 |= 1<<9)
+#define NVIC_IRQ10_EXTI4_Disable		(NVIC_ICER0 |= 1<<10)
+#define NVIC_IRQ23_EXTI5_9_Disable		(NVIC_ICER0 |= 1<<23)
+#define NVIC_IRQ40_EXTI10_15_Disable	(NVIC_ICER1 |= 1<<8)
+
+//================================================================//
+//-*-*-*-*-*-*-*-*-*-*-*
 //Generic Macros:
 //-*-*-*-*-*-*-*-*-*-*-*
 
