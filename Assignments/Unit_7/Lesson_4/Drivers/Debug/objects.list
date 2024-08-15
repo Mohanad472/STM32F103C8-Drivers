@@ -1,0 +1,8 @@
+"./HAL/I2C_Slave_EEPROM.o"
+"./Inc/stm32f103c8_EXTI.o"
+"./Inc/stm32f103c8_GPIO.o"
+"./Inc/stm32f103c8_I2C.o"
+"./Src/main.o"
+"./Src/syscalls.o"
+"./Src/sysmem.o"
+"./Startup/startup_stm32f103c8tx.o"
